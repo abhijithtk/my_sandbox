@@ -1,5 +1,6 @@
 #include <iostream>
-
+#include <string.h>
+using namespace std;
 bool areAnagrams(const char* s1, const char* s2)
 {
     int l1 = strlen(s1);
@@ -29,6 +30,6 @@ bool areAnagrams(const char* s1, const char* s2)
 
 int main()
 {
-	cout << areAnagrams("aab","aaa") << endl;
+	cout << areAnagrams("aab","aab") << endl;
 	return 0;
 }
