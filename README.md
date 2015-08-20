@@ -1,3 +1,2 @@
-# interview_prep
-Interview related docs\n
+# Practice examples & related docs\n
 initial commit
