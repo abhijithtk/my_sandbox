@@ -69,3 +69,75 @@ int main() {
   LO(n);
   return 0;
 }
+
+################################################################
+#include <iostream>
+#include <queue>
+
+using namespace std;
+
+typedef struct node 
+{
+    int d;
+    struct node * l;
+    struct node * r;
+}Node;
+
+Node* insert(Node* x, int d)
+{
+    if(x == NULL)
+    {
+        x = new Node;
+        x->d = d;
+        x->l = NULL;
+        x->r = NULL;
+        return x;
+    }
+    if(x->d <= d)
+    {
+        x->r = insert(x->r,d);
+    }
+    if(x->d > d)
+    {
+        x->l = insert(x->l,d);   
+    }
+    return x;
+}
+
+void printLevelOrder(Node *x)
+{
+    std::queue<Node*> q;
+    q.push(x);
+    while(1)
+    {
+        int size = q.size();
+        if(size == 0)
+            return;
+        while(size)
+        {
+            Node *tmp = q.front();
+            q.pop();
+            cout  << tmp->d;
+            if(tmp->l)
+                q.push(tmp->l);
+            if(tmp->r)
+                q.push(tmp->r);
+            size--;
+        }
+        cout << endl;
+    }
+}
+
+int main() {
+    Node* x = insert(x, 5);
+    insert(x, 3);
+    insert(x, 7);
+    insert(x, 2);
+    insert(x, 1);
+    insert(x, 6);
+    insert(x, 8);
+    insert(x, 9);
+    printLevelOrder(x);
+	return 0;
+}
+
