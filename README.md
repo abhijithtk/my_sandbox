@@ -1,2 +1,2 @@
 # Practice examples & related docs\n
-initial commit
+Code for various algorithms and puzzles. 
