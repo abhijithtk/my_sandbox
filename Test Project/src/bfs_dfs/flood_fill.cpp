@@ -27,15 +27,9 @@ bool isValid(int mat[][N], int visited[][N], int i, int j) {
     return false;
 }
 
-void floodfill(int mat[5][5]) {
-    int visited[M][N] = {{0,0,0,0,0},
-    {0,0,0,0,0},
-    {0,0,0,0,0},
-    {0,0,0,0,0},
-    {0,0,0,0,0}};
-    
+void floodfill(int mat[M][N], int s, int e, int visited[M][N]) {    
     queue<pair<int,int> > q;
-    q.push(pair<int,int>(0,0));
+    q.push(pair<int,int>(s,e));
     while(!q.empty()) {
         pair<int,int> p = q.front();
         int i = p.first;
@@ -71,6 +65,15 @@ int main(){
         {0, 1, 0, 0, 0},
         {0, 0, 0, 1, 1}
     };
-    floodfill(mat);
+    int visited[M][N] = {{0,0,0,0,0},
+        {0,0,0,0,0},
+        {0,0,0,0,0},
+        {0,0,0,0,0},
+        {0,0,0,0,0}};
+    for(int i = 0; i < M; i ++) {
+        for(int j = 0; j < N; j++) {
+            floodfill(mat, i, j, visited);        
+        }
+    } 
     printMat(mat);
 }
