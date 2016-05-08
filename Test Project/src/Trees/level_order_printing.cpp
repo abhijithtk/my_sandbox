@@ -128,6 +128,44 @@ void printLevelOrder(Node *x)
     }
 }
 
+void printZigZagLevelOrder(Node *x)
+{
+    std::queue<Node*> q;
+    q.push(x);
+    bool dir = false;
+    while(1)
+    {
+        int size = q.size();
+        if(size == 0)
+            return;
+        vector<int> v;
+        while(size)
+        {
+            Node *tmp = q.front();
+            q.pop();
+            v.push_back(tmp->d);
+            //cout  << " " << tmp->d;
+            if(tmp->l)
+                q.push(tmp->l);
+            if(tmp->r)
+                q.push(tmp->r);
+            size--;
+        }
+        if(dir) {
+                for(int i = v.size() - 1; i >= 0; i--) {
+                cout << " " << v[i];
+            }   
+        }
+        else {
+                for(int i = 0; i < v.size(); i++) {
+                cout << " " << v[i];
+            }   
+        }
+        dir ^= 1;
+        cout << endl;
+    }
+}
+
 int main() {
     Node* x = insert(x, 5);
     insert(x, 3);
