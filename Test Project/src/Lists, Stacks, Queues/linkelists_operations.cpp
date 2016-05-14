@@ -22,6 +22,30 @@ N* reverse(N *t)
     return NULL;
 }
 
+void SortedInsert(Node **n, int d) {
+    Node *t = new Node;
+    t->d = d;
+    t->n = NULL;    
+    cout << "D" << d << endl;
+    if(*n == NULL){
+        *n = t;    
+    }
+    else if (d <= (*n)->d) {
+        t->n = *n;
+        *n = t;
+    }
+    else {
+        Node *c = *n;
+        Node *p = *n;
+        while(c && c->d < d) {
+            p = c;
+            c = c->n;
+        }
+        p->n = t;
+        t->n = c;
+    }  
+}
+
 void insertLL(N **h, int d)
 {
     N* t =  new N;
