@@ -12,32 +12,19 @@ using namespace std;
 
 class Solution {
 public:
-	bool isValidRow(vector<vector<char>>& board, int row){
-		map<char,int> m;
+	bool isValidRow(vector<vector<char>>& board, int row, char k){
 		for(int i = 0; i< 9; i++)
 		{
-			if(board[row][i] == '.')
-				continue;
-
-			if( m.find(board[row][i]) == m.end() ){
-				m.insert(make_pair(board[row][i],1));
-			}
-			else {
+			if(board[row][i] == k)
 				return false;
-			}
 		}
 		return true;
 	}
-	bool isValidCol(vector<vector<char>>& board, int col){
-		map<char,int> m;
+
+	bool isValidCol(vector<vector<char>>& board, int col, char k){
 		for(int i = 0; i< 9; i++)
 		{
-			if(board[i][col] == '.')
-				continue;
-			if(m.find(board[i][col]) == m.end()){
-				m.insert(make_pair(board[i][col],1));
-			}
-			else
+			if(board[i][col] == k)
 				return false;
 		}
 		return true;
@@ -54,28 +41,42 @@ public:
 			return -1;
 	}
 
-	bool isValidSquare(vector<vector<char>>& board, int row, int col){
+	bool isValidSquare(vector<vector<char>>& board, int row, int col, char k){
 		int i = getSt(row);
 		int j = getSt(col);
 		for(int a = i; a < (i + 3); a++){
 			for(int b = j; b < (j + 3); b++){
-				if(board[a][b] == board[row][col] && a != row && b != col)
+				if(board[a][b] == k)
 					return false;
 			}
 		}
 		return true;
 	}
 
-    bool isValidSudoku(vector<vector<char>>& board) {
+    bool solveSudokuHelper(vector<vector<char>>& board, int i, int j) {
     	for(int i = 0; i < 9; i++){
     		for(int j = 0; j< 9; j++){
-    			if(board[i][j] == '.')
-    				continue;
-    			if(! isValidRow(board, i) || ! isValidCol(board, j) || ! isValidSquare(board, i, j))
-    				return false;
+    			if(board[i][j] == '.') {
+    				for(char k = '1'; k <= '9'; k++){
+						if(isValidRow(board, i, k) && isValidCol(board, j, k) && isValidSquare(board, i, j, k)) {
+							board[i][j] = k;
+	    					if( solveSudokuHelper(board, i , j)) {
+	    						return true;
+	    					}
+	    					else {
+	    						board[i][j] = '.';
+	    					}
+    					}
+    				}
+					return false;
+    			}
     		}
     	}
-    	return true;
+		return true;
+	}
+
+    void solveSudoku(vector<vector<char>>& board) {
+    	solveSudokuHelper(board, 0, 0);
     }
 };
 
@@ -83,16 +84,22 @@ public:
 int main()
 {
     vector<vector<char> > v{
-    	{'.','8','7','6','5','4','3','2','1'} ,
-    	{'2','.','.','.','.','.','.','.','.'} ,
-    	{'3','1','.','.','.','.','.','.','.'} ,
-    	{'4','.','.','.','.','.','.','.','.'} ,
-    	{'5','.','.','.','.','.','.','.','.'} ,
-    	{'6','.','.','.','.','.','.','.','.'} ,
-    	{'7','.','.','.','.','.','.','.','.'} ,
-    	{'8','.','.','.','.','.','.','.','.'} ,
-    	{'9','.','.','.','.','.','.','.','.'}};
+    	{'.','.','9','7','4','8','.','.','.'},
+    	{'7','.','.','.','.','.','.','.','.'},
+    	{'.','2','.','1','.','9','.','.','.'},
+    	{'.','.','7','.','.','.','2','4','.'},
+    	{'.','6','4','.','1','.','5','9','.'},
+    	{'.','9','8','.','.','.','3','.','.'},
+    	{'.','.','.','8','.','3','.','2','.'},
+    	{'.','.','.','.','.','.','.','.','6'},
+    	{'.','.','.','2','7','5','9','.','.'}};
     Solution obj;
-    //obj.solve(v);
-    cout << obj.isValidSudoku(v) << endl;
+    obj.solveSudoku(v);
+    for(int i = 0; i < v.size(); i++){
+    	for(int j = 0;  j< v[i].size(); j++) {
+    		cout << v[i][j] << " ";
+    	}
+    	cout << endl;
+    }
+    //cout << obj.solveSudoku(v) << endl;
 }
