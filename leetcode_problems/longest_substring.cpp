@@ -13,7 +13,7 @@ using namespace std;
 
 class Solution {
 public:
-	int lengthOfLongestSubstring(string s) {
+	int lengthOfLongestSubstring1(string s) {
 		map<char, int> m;
 		int ans = 0;
 		for (int i = 0, j = 0; j < s.size(); j++)
