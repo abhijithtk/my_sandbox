@@ -32,14 +32,13 @@ public:
     	}
     	s.erase(0, i);
     	i = s.size() - 1;
-    	cout << i << endl;
     	while(i >= 0) {
     		if(s[i] == ' ')
     			i--;
     		else break;
     	}
-    	cout << i + 1 << endl;
     	s.erase(i + 1, s.size() - i);
+    	reverse(s.begin(), s.end());
     	cout << "'" << s << "'" << endl;
 
     }

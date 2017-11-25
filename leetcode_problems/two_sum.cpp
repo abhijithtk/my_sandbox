@@ -26,6 +26,26 @@ public:
     	}
     	return v;
     }
+    vector<int> solve1(vector<int>& board) {
+        int target  = 9;
+        vector<int> v;
+        map<int, int> m;
+        for (int i = 0; i < board.size(); i++) {
+            int diff = target - board[i];
+            if(m.find(diff) == m.end()) {
+                m.insert(make_pair(board[i],i));
+                continue;
+            }
+            v.push_back(m[diff]);
+            v.push_back(i);
+            //cout << "Found" << diff << " at " << m[diff] << " and found " << board[i] << "at" << i << endl;
+            return v;
+            //cout << i << endl;
+
+
+        }
+        return v;
+    }
 };
 
 int main()
