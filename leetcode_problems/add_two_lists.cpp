@@ -17,7 +17,7 @@ struct ListNode {
 
 class Solution {
 public:
-    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+    ListNode* addTwoNumbers1(ListNode* l1, ListNode* l2) {
     	ListNode *head = NULL;
     	ListNode *curr = NULL;
     	ListNode *prev = NULL;
@@ -56,6 +56,27 @@ public:
 			pprev->next = new ListNode(1);
 		}
     	return head;
+    }
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode *head = NULL;
+        ListNode *prev = NULL;
+        int carry = 0;
+        while(l1 != NULL || l2 != NULL) {
+            auto sum = (l1 ? l1->val : 0) + (l2 ? l2->val : 0) + carry;
+            carry = sum > 10 ? 1 : 0;
+            ListNode *temp = new ListNode(sum % 10);
+            if(head == NULL)
+                head = temp;
+            else
+                prev->next = temp;
+            prev = temp;
+            l1 = l1 ? l1->next : NULL;
+            l2 = l2 ? l2->next : NULL;
+        }
+        if(carry) {
+            prev->next = new ListNode(carry);
+        }
+        return head;
     }
 };
 
