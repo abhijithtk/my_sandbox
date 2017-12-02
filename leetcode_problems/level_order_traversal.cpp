@@ -16,6 +16,37 @@ struct TreeNode {
 
 class Solution {
 public:
+    vector<vector<int>> zigzagOrder(TreeNode* root) {
+        vector<vector<int>> ret;
+        if(root == NULL)
+            return ret;
+        deque<TreeNode *> dq;
+        dq.push_back(root);
+        int count = 1;
+        while(dq.size() > 0) {
+            int children = 0;
+            std::vector<int> tv;
+            while(count > 0) {
+                count--;
+                TreeNode* tmp = dq.front();
+                cout << tmp->val << " ";
+                tv.push_back(tmp->val);
+                dq.pop_back();
+                if(tmp->left) {
+                    dq.push_front(tmp->left);
+                    children++;
+                }
+                if(tmp->right) {
+                    dq.push_front(tmp->right);
+                    children++;
+                }
+            }
+            ret.push_back(tv);
+            cout << endl;
+            count = children;
+        }
+        return ret;
+    }
     vector<vector<int>> levelOrder(TreeNode* root) {
         vector<vector<int>> ret;
         if(root == NULL)
@@ -59,6 +90,7 @@ int main()
     //t->right->left = new TreeNode(6);
     Solution obj;
     obj.levelOrder(t);
+    obj.zigzagOrder(t);
     //for(auto &i : obj.levelOrder(t))
     //	cout << i << endl;
 }

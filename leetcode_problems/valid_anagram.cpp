@@ -27,6 +27,21 @@ public:
 		}
 		return ret;
 	}
+	bool isAnagram(string s, string t) {
+		int dict[26] = {0};
+		if(s.size() != t.size())
+			return false;
+		for(int i =0; i < s.size(); i++) {
+			dict[s[i] - 'a']++;
+			dict[t[i] - 'a']--;
+		}
+		for(int i = 0; i < 26; i++) {
+			if(dict[i])
+				return false;
+		}
+		return true;
+	}
+
     bool isAnagram(string s, string t) {
     	return thotha_sort(s) == thotha_sort(t);
     }

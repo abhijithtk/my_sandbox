@@ -1,11 +1,9 @@
-
-
-
 #include <vector>
 #include <queue>
 #include <map>
 #include <iostream>
 #include <stack>
+#include <unordered_set>
 
 using namespace std;
 
@@ -66,7 +64,7 @@ public:
 		return true;
 	}
 
-    bool isValidSudoku(vector<vector<char>>& board) {
+    bool isValidSudoku1(vector<vector<char>>& board) {
     	for(int i = 0; i < 9; i++){
     		for(int j = 0; j< 9; j++){
     			if(board[i][j] == '.')
@@ -77,6 +75,48 @@ public:
     	}
     	return true;
     }
+	bool isValidSudokuAbhiTest(vector<vector<char>>& board) {
+	    unordered_set<string> seen;
+	    for(int i = 0; i < 9; i++) {
+	    	for(int j = 0; j < 9; j++) {
+	    		string val = "{" + (to_string(board[i][j] - '0')) + "}";
+	    		string row = val + to_string(i);
+	    		string col = to_string(j) + val;
+	    		string square = to_string(j) + val + to_string(i);
+	    		if(seen.find(row) == seen.end() || seen.find(col) == seen.end() || seen.find(square) == seen.end()) {
+	    			return false;
+	    		}
+	    		else {
+	    			seen.insert(row);
+	    			seen.insert(col);
+	    			seen.insert(square);
+	    		}
+	    	}
+	    }
+	    return true;
+	}
+	bool isValidSudoku(vector<vector<char>>& board) {
+	    unordered_set<string> seen;
+	    for (int i=0; i<9; ++i) {
+	        for (int j=0; j<9; ++j) {
+	            if (board[i][j] != '.') {
+	                string b = "(" + to_string(board[i][j] - '0') + ")";
+	                string row = b + to_string(i);
+	                string col = to_string(j) + b;
+	                string square = to_string(i/3) + b + to_string(j/3);
+	                cout << row << " " << col << " " << square << endl;
+	                if (seen.find(row) != seen.end() || seen.find(col) != seen.end() || seen.find(square) != seen.end())
+	                    return false;
+	                else {
+	                	seen.insert(row);
+	                	seen.insert(col);
+	                	seen.insert(square);
+	                }
+	            }
+	        }
+	    }
+	    return true;
+	}
 };
 
 
@@ -91,7 +131,7 @@ int main()
     	{'6','.','.','.','.','.','.','.','.'} ,
     	{'7','.','.','.','.','.','.','.','.'} ,
     	{'8','.','.','.','.','.','.','.','.'} ,
-    	{'9','.','.','.','.','.','.','.','.'}};
+    	{'9','.','.','.','.','.','.','.','7'}};
     Solution obj;
     //obj.solve(v);
     cout << obj.isValidSudoku(v) << endl;

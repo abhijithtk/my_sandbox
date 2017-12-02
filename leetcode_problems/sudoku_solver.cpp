@@ -74,9 +74,59 @@ public:
     	}
 		return true;
 	}
+	bool isSafe(vector<vector<char>>& board, int row, int col, int val) {
+		for(int i = 0; i < 9; i++) {
+			if(board[row][i] == val)
+				return false;
+		}
+		for(int i = 0; i < 9; i++) {
+			if(board[i][col] == val)
+				return false;
+		}
+		int i = getSt(row);
+		int j = getSt(col);
+		for(int a = i; a <  (i + 3); a++) {
+			for(int b = j; b <  (j + 3); b++) {
+				if(board[a][b] == val)
+					return false;
+			}
+		}
+		return true;
+	}
+
+	bool findLocation(vector<vector<char>>& board, int &row, int &col) {
+		for(int i = 0; i < board.size(); i++) {
+			for(int j = 0; j < board[0].size(); j++) {
+				if(board[i][j] == '.') {
+					row = i;
+					col = j;
+					return true;
+				}
+			}
+		}
+		return false;
+
+	}
+
+	bool solveSudokuUtil(vector<vector<char>>& board) {
+		int row = 0;
+		int col = 0;
+		if(!findLocation(board, row, col))
+			return true;
+		for(char i = '1'; i <= '9'; i++) {
+			if(isSafe(board, row, col, i)) {
+				board[row][col] = i;
+				if(solveSudokuUtil(board))
+					return true;
+				board[row][col] = '.';
+			}
+		}
+		return false;
+	}
 
     void solveSudoku(vector<vector<char>>& board) {
-    	solveSudokuHelper(board, 0, 0);
+    	//solveSudokuHelper(board, 0, 0);
+    	solveSudokuUtil(board);
     }
 };
 

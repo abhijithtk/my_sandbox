@@ -26,6 +26,15 @@ public:
         }
         return ret;
     }
+    int findKthLargest1(vector<int>& nums, int k) {
+        priority_queue<int> pq(nums.begin(), nums.end());
+
+        while(k - 1 > 0) {
+            pq.pop();
+            k--;
+        }
+        return pq.top();
+    }
 };
 
 int main()
@@ -33,5 +42,5 @@ int main()
 	int k =3;
     vector<int> v{2, 2,0, 1};
     Solution obj;
-    cout << obj.findKthLargest(v, k) << endl;
+    cout << obj.findKthLargest1(v, k) << endl;
 }
