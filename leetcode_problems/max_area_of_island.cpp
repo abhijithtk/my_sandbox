@@ -15,10 +15,11 @@ public:
 		return false;
 	}
 
-	void bfs_count_islands(vector<vector<int>>& mat,  int i_new, int j_new) {
+    int bfs_count_islands(vector<vector<int>>& mat,  int i_new, int j_new) {
 
 		queue<pair<int, int> > q;
 		q.push(make_pair(i_new, j_new));
+        int count = 0;
 		while(q.size() > 0) {
 			pair<int,int> p = q.front();
 			int i = p.first;
@@ -26,6 +27,7 @@ public:
 			q.pop();
 			if(is_valid(mat, i, j))
 			{
+                count++;
 				mat[i][j] = 'x';
 				q.push(make_pair(i - 1, j));
 				q.push(make_pair(i, j - 1));
@@ -33,7 +35,7 @@ public:
 				q.push(make_pair(i, j + 1));
 			}
 		}
-		return;
+		return count;
 	}
 
 	int dfs_count_islands(vector<vector<int>>& mat,  int i_new, int j_new) {
@@ -60,7 +62,7 @@ public:
 			{
 				if (grid[i][j] == 1 && grid[i][j] != 9)
 				{
-					count = dfs_count_islands(grid, i , j);
+					count = bfs_count_islands(grid, i , j);
 					max = max > count ? max : count;
 				}
 				/* code */

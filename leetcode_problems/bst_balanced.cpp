@@ -20,14 +20,22 @@ struct TreeNode {
 class Solution {
 public:
 	int isBalancedUtil(TreeNode *root) {
-		if(root)
+		if(root == NULL)
+            return 0;
+        int lh = isBalancedUtil(root->left);
+        if(lh == -1)
+            return -1;
+        int rh = isBalancedUtil(root->right);
+        if(rh == -1)
+            return -1;
+        if(abs(lh - rh) > 1)
+            return -1;
+        return max(lh,rh) + 1;
 	}
 
     bool isBalanced(TreeNode* root) {
-    	if(root) {
-    		return abs(isBalancedUtil(root->left) - isBalancedUtil(root->right)) < 2;
-    	}
-    	return true;
+    		return isBalancedUtil(root) != -1;
+    }
 };
 
 int main()
@@ -38,8 +46,8 @@ int main()
     t->right = new TreeNode(20);
     t->right->left = new TreeNode(15);
     t->right->right = new TreeNode(9);
-    t->right->right->right = new TreeNode(10);
-    t->right->right->right->right = new TreeNode(11);
+ //   t->right->right->right = new TreeNode(10);
+ //   t->right->right->right->right = new TreeNode(11);
 
     //vector<vector<char> > v{{'X','O','X','O','X','O'},{'O','X','O','X','O','X'},{'X','O','X','O','X','O'},{'O','X','O','X','O','X'}};
     Solution obj;

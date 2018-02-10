@@ -1,0 +1,7 @@
+#1 Decouple events. For eg Renderer from core logic
+#2 Ability to replay events, to save space, or for incremental updates.
+#3 Logging of events for metrics collection
+#4 Estimate load
+#5 Ask if it is for Web or Mobile or both.
+#6 Clarify features, dont blindly assume.
+#7 Use sqllite for client side data storage
