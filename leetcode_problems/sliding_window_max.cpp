@@ -13,6 +13,10 @@ using namespace std;
 
 class Solution {
 public:
+    // keep popping from the deque all numbers smaller than nums[i]
+    // push i into the deque. 
+    // start pushing into result, values from deque once you have gone over k elements.
+    // if deque.front() is more than k elements behind. pop_front from deque
     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
         std::vector<int> res;
         deque<int> dq;

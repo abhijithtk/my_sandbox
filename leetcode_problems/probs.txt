@@ -1,5 +1,3 @@
-longest substring
-median of 2 arrays
 longest palindrome
 integer to string
 string to integer
@@ -9,12 +7,10 @@ string is a palindrome
 reverse words in a string
 phone digit possibilities
 find substring
-zigzag pattern
 roman to decimal
 decimal to roman
 3sum
 merge 2 sorted lists
-min absolute difference in BST
 sliding window max, median and average
 top k frequent elements in a array
 k largest elements in a sorted 2d array
@@ -25,7 +21,6 @@ search a sorted 2d array
 find kth largest element in a non sorted array
 find missing IP address
 find the duplicate and missing element in a array
-kth smallest element in a BST
 Intersection of 2 sorted arays
 merge 2 sorted arrays
 find max number of simultaneous events in a day
@@ -34,52 +29,61 @@ fast sorting a linked list
 find anagram groups
 test for palindromic permutations
 check if anonymous letter can be constructed from a magazine
-LRU cache
 nearest repeated entry in a array
 palindromic pairs - check if concatenation of any 2 strings in a vector will result in a palindrome
 smallest subarray containing all the values
 reverse bits
 x+y without arithmetic operators - bitwise
-check if binary tree is height balanced
-check if bst is symmetric - left and right are mirror images
-Least common ancestor in a BST
-max depth of a BST
-build BST from preorder and inorder lists
-find leaves in a BST
-check if tree is BST
-find first element greater than k in bst
 tower of hanoi - just practise
 n queens - just practise
-generate all permutations of arrays from the given array values
-generate power set
 sudoku solver
 coin change
-edit distance
 No of ways to traverse a 2d array
-given a dictionary and a string, check all decompositions of the string that are words from the dictionary - bed bath and beyond
-search a maze - rat in a maze
-In a grid starting from (x,y), flip colors of all those places that can be reached from (x,y)
-number of islands
-surrounding areas - minesweeper
-word ladder
-optimal task assignment
-total time taken for a sequence of tasks/queries
 search for majority element in a stream
 compute max water trapped by a pair of vertical lines
-largest rectangle under a skyline
-total rain water trapped
-product of array except self
-buy and sell stock once
-spiral ordering of a matrix
 rotate a image 
-https://leetcode.com/problems/task-scheduler/description/
 
+
+## Done #####
+FaceBook:
+Implement a LRU cache - follow up - how do you ensure it works in multi threaded cases
+Given a list of tasks, return the minimum number of cycles taken to execute them if N cooling period is needed between similar tasks. Ensure that the order of the tasks are maintained
 design a online chess game service
 1. check if a array is monotonic and return a bool
 monotonic - the order of the elements is the same - either increasing or decreasing
 2. Convert a binary tree to a circular linked list where the nodes are inorder. Return the left most leaf node as head of the list
 This is a binary tree and not a BST. So values will not be sorted. 
 
-Given a list of tasks, return the minimum number of cycles taken to execute them if N cooling period is needed between similar tasks. Ensure that the order of the tasks are maintained
-
-Implement a LRU cache - follow up - how do you ensure it works in multi threaded cases
+https://leetcode.com/problems/task-scheduler/description/
+largest rectangle under a skyline
+word ladder
+given a dictionary and a string, check all decompositions of the string that are words from the dictionary - bed bath and beyond
+edit distance
+longest substring
+median of 2 arrays
+number of islands
+total rain water trapped
+product of array except self
+buy and sell stock once
+LRU cache
+Tree:
+check if binary tree is height balanced
+check if bst is symmetric - left and right are mirror images
+kth smallest element in a BST
+Least common ancestor in a BST
+Least common ancestor in a BT
+max depth of a BST
+build BST from preorder and inorder lists
+find leaves in a BST
+check if tree is BST
+min absolute difference in BST
+find first element greater than k in bst
+optimal task assignment
+In a grid starting from (x,y), flip colors of all those places that can be reached from (x,y)
+total time taken for a sequence of tasks/queries
+generate all permutations of arrays from the given array values
+search a maze - rat in a maze
+generate power set
+surrounding areas - minesweeper
+spiral ordering of a matrix
+zigzag pattern
